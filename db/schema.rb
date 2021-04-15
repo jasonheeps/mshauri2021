@@ -10,9 +10,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_04_15_180627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "answers", force: :cascade do |t|
+    t.bigint "next_question_id", null: false
+    t.bigint "question_id", null: false
+    t.string "value"
+    t.boolean "input", default: false
+    t.float "score"
+    t.bigint "recommendation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["next_question_id"], name: "index_answers_on_next_question_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["recommendation_id"], name: "index_answers_on_recommendation_id"
+  end
+
+  create_table "iteration_answers", force: :cascade do |t|
+    t.bigint "iteration_id", null: false
+    t.bigint "question_id", null: false
+    t.bigint "answer_id", null: false
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_iteration_answers_on_answer_id"
+    t.index ["iteration_id"], name: "index_iteration_answers_on_iteration_id"
+    t.index ["question_id"], name: "index_iteration_answers_on_question_id"
+  end
+
+  create_table "iterations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_iterations_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.boolean "entry", default: false
+    t.string "identifier"
+    t.boolean "multiple"
+    t.boolean "other"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.integer "priority"
+    t.string "identifier"
+    t.text "intro"
+    t.boolean "general", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "slug"
+    t.boolean "admin", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
+  end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "questions", column: "next_question_id"
+  add_foreign_key "answers", "recommendations"
+  add_foreign_key "iteration_answers", "answers"
+  add_foreign_key "iteration_answers", "iterations"
+  add_foreign_key "iteration_answers", "questions"
+  add_foreign_key "iterations", "users"
 end
