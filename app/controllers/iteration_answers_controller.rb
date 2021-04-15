@@ -1,0 +1,2 @@
+class IterationAnswersController < ApplicationController
+end
