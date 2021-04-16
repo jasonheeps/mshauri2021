@@ -14,3 +14,12 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800|Roboto:300,400,500');
+
+// Typography
+$primary-font: 'Nunito', sans-serif;
+$secondary-font: 'Nunito', sans-serif;
+$font-family-sans-default: "Roboto", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
