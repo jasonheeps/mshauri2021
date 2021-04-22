@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_180627) do
+ActiveRecord::Schema.define(version: 2021_04_16_070826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.bigint "next_question_id", null: false
+    t.bigint "next_question_id"
     t.bigint "question_id", null: false
     t.string "value"
     t.boolean "input", default: false
     t.float "score"
-    t.bigint "recommendation_id", null: false
+    t.bigint "recommendation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["next_question_id"], name: "index_answers_on_next_question_id"

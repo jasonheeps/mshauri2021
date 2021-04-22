@@ -1,0 +1,38 @@
+---
+id: architecture_diagram
+title: Architecture Diagram
+intro: A graphical representation of a software system which makes it easier to understand the system as a whole. To document the software system we recommend creating an architecture diagram.
+priority: 200
+description: |
+  An architecture diagram is a graphical representation of a software system that contains all components and their relation to each other.  
+  Such a high-level diagram provides an overview of the whole system and allows system developers to understand, clarify, and communicate the various required components.
+
+  The architecture diagram is an important part of the documentation and depending on the industry it is required for certain regulatory approval and external system audits.
+
+  There is no fixed definition on how an architecture diagram must look like, and there is no wrong way to do it. 
+  As English idiom which says "a picture is worth a thousand words" any image makes a complex idea or system easier to understand and conveys its meaning or essence more effectively than a description does.
+
+  ### Example from soundcloud.com
+
+  ![](/files/architecture-diagram.jpg)
+
+  ### Links
+
+  * [Wikipedia: System context diagram](https://en.wikipedia.org/wiki/System_context_diagram)
+  * [The Art of Crafting Architectural Diagrams](https://www.infoq.com/articles/crafting-architectural-diagrams/)
+
+  ### Tools to draw diagrams:
+
+  * [creatly.com](https://creately.com/)
+  * [draw.io](https://www.draw.io/)
+  * [lucidchart.com](https://www.lucidchart.com/)
+
+  ### How to get started
+
+  We recommend by starting to write down every compontent of your system. - e.g. databases, mobile apps, APIs, servers.
+  Then use one of the tools above and draw each of those components and a line if those are connected to each other.
+
+  Alternatively you can also start from a user and draw every part of the system that is involved if an user accesses your system.
+
+  In the example above you see the various clients "3rd Party Apps, iOS / Android, Soundcloud.com" that access a public API within the "Mothership" application.
+  That application is connected to the "MySQL Cluster" and uses the "Semantic Event Broker" to communicate with different "Microservices", which again use an "Internal API" within the "Mothership" application.

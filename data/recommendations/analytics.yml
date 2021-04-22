@@ -1,0 +1,24 @@
+---
+id: analytics
+title: Web Analytics
+intro: User analytics can be a great source of information to validate business assumptions and identify potential usage issues.
+priority: 10
+description: |
+  Most companies face uncertainties while building products and growing the company. 
+  For any company it is helpful to validate certain business assumptions and base decisions on actual data (and less on instinct). 
+  Collecting any kind of data and creating key performance indicators ([KPIs](https://en.wikipedia.org/wiki/Performance_indicator)) are helpful to evaluate the success of your actions. 
+
+  For web applications we recommend to use analytics tools to track and analyze actual user behavior.  
+  This helps to understand what and how users behave on the website and to identify potential issues.
+
+  ### Analytics tools
+
+  * [Fathom](https://usefathom.com/) - analytics tool available as open source or hosted version
+  * [Google Analytics](https://analytics.google.com/analytics/web/)
+  * [Mixpanel](https://mixpanel.com/")
+
+  ### How to get started
+
+  Getting started with most analytics tools for web and mobile applications is pretty easy and requires mainly to include a tracking library into your application.
+  For web applications this is a small piece of JavaScript. 
+
