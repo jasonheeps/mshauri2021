@@ -1,0 +1,6 @@
+
+<div><%= @question.title %></div>
+
+ <% @question.answers.each do |answer| %>
+ <p><%= answer.value %></p>
+  <% end %>
