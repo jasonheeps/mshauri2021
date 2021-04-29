@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
-  # skip_after_action :verify_authorized, only: %i[show]
-  # skip_after_action :verify_policy_scoped, only: %i[index]
+  skip_after_action :verify_authorized, only: %i[show]
+  skip_after_action :verify_policy_scoped, only: %i[index]
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find(params[:question_id])
   end
 
   def index
