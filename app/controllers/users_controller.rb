@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # skipt pundit authorization for UsersController
+  skip_after_action :verify_authorized
+
   def create
     if user_params[:email].blank?
       flash[:notice] = 'Please enter your email address'
@@ -6,9 +9,6 @@ class UsersController < ApplicationController
     else
       login or register
     end
-
-    # skip pundit authorization users#create
-    skip_authorization
   end
 
   private
@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     # user can only login if they already have an "account"
     return false unless @user
 
-    authorize @user
     # if user entered an email for which an "account" already exists, then:
     # - resend email with login info
     UserMailer.with(user: @user).login.deliver_now
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def register
-    authorize @user = User.new(user_params)
+    @user = User.new(user_params)
     if @user.save && @user.iterations.build.save # TODO: refactor iteration creation and redirect to iteration
       # redirect_to iteration_question_url(
       #   user_slug: @user.slug,
