@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root to: 'home#welcome'
 
   resources :users, only: [:create]
+  resources :questions, only: %i[index show]
+  resources :iteration_answers, only: %i[index create]
+
+  get '/:user_slug/i/:iteration_id/questions/:question_id', to: 'questions#show', as: :iteration_question
 end

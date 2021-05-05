@@ -1,0 +1,8 @@
+
+<div><%= @question.title %></div>
+
+ <% @question.answers.each do |answer| %>
+ <p><%= answer.value %></p>
+  <% end %>
+
+  <%= link_to "Next", questions_path(params[:next_question_id]) %>
