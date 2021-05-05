@@ -1,18 +1,24 @@
 class UsersController < ApplicationController
   def create
-    login or register
+    if user_params[:email].blank?
+      flash[:notice] = 'Please enter your email address'
+      redirect_to root_url
+    else
+      login or register
+    end
+
+    # skip pundit authorization users#create
+    skip_authorization
   end
 
   private
 
   def login
-    # user can only login if they entered an email
-    return false if user_params[:email].blank?
-
     @user = User.find_by(email: user_params[:email])
     # user can only login if they already have an "account"
     return false unless @user
 
+    authorize @user
     # if user entered an email for which an "account" already exists, then:
     # - resend email with login info
     UserMailer.with(user: @user).login.deliver_now
@@ -23,13 +29,18 @@ class UsersController < ApplicationController
   end
 
   def register
-    @user = User.new(user_params)
+    authorize @user = User.new(user_params)
     if @user.save && @user.iterations.build.save # TODO: refactor iteration creation and redirect to iteration
-      redirect_to iteration_question_url(
-        user_slug: @user.slug,
-        iteration_id: @user.iterations.last.id,
-        question_id: @user.iterations.last.starting_question_id
-      )
+      # redirect_to iteration_question_url(
+      #   user_slug: @user.slug,
+      #   iteration_id: @user.iterations.last.id,
+      #   question_id: @user.iterations.last.starting_question_id
+      # )
+
+      # >>> code for testing until we have implemented iteration_question_url
+      flash[:notice] = 'Registering works!'
+      redirect_to root_url
+      # <<< end of testing code
     else
       render '/home/welcome'
     end

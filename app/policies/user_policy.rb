@@ -8,4 +8,12 @@ class UserPolicy < ApplicationPolicy
   def welcome?
     true
   end
+
+  def login?
+    true
+  end
+
+  def register?
+    true
+  end
 end
