@@ -6,6 +6,8 @@
   <body>
     <h1>Welcome back to the Rwanda Tech Guide</h1>
     <p>
+      <!-- note on '_path' vs '_url' suffix for routes:
+        https://stackoverflow.com/questions/11939865/named-routes-path-vs-url -->
       Use the following link to see your recommendations:  <%= link_to nil, home_url(@user.slug) %>.
     </p>
   </body>
