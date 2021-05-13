@@ -6,14 +6,18 @@ class RecommendationsController < ApplicationController
   def index
     @recommendations = policy_scope(Recommendation)
 
+    @recommendations = Recommendation.all
+
     @recommendations = @recommendations.joins(:iterations).where(iterations: { id: params[:iteration_id] }) if params[:iteration_id]
 
     @recommendations = @recommendations.order(priority: :desc).distinct.to_a
-    return unless @recommendations.count < 7
+    return
+    # to be uncommented once .general is defined?
+    # unless @recommendations.count < 7
 
-    @recommendations += Recommendation.general.to_a
-    @recommendations.uniq!
-    @recommendations.sort! { |a, b| b.priority <=> a.priority } # sorty by highest priorty first
+    # @recommendations += Recommendation.general.to_a
+    # @recommendations.uniq!
+    # @recommendations.sort! { |a, b| b.priority <=> a.priority } # sort by highest priorty first
   end
 
   def all

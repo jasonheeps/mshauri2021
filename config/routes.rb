@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/:user_slug/i/:iteration_id/questions/:question_id', to: 'questions#show', as: :iteration_question
   get '/:user_slug/i/:iteration_id/recommendations', to: 'recommendations#index', as: :recommendations
-  # get '/:user_slug/i/:iteration_id/recommendations/:recommendation_id', to: 'recommendations#show', as: :recommendations
+
   # recommendations route from original app
   # get '/:user_slug/i/:iteration_id/recommendations', to: 'home#index', as: :recommendations
 
