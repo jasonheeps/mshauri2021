@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skipt pundit authorization for UsersController
+  # skip pundit authorization for UsersController
   skip_after_action :verify_authorized
 
   def create
@@ -30,15 +30,16 @@ class UsersController < ApplicationController
   def register
     @user = User.new(user_params)
     if @user.save && @user.iterations.build.save # TODO: refactor iteration creation and redirect to iteration
-      # redirect_to iteration_question_url(
-      #   user_slug: @user.slug,
-      #   iteration_id: @user.iterations.last.id,
-      #   question_id: @user.iterations.last.starting_question_id
-      # )
+      redirect_to iteration_question_url(
+        user_slug: @user.slug,
+        iteration_id: @user.iterations.last.id,
+        # TODO: implement 'starting_quesiton_id' in iterations_controller
+        question_id: @user.iterations.last.starting_question_id
+      )
 
       # >>> code for testing until we have implemented iteration_question_url
-      flash[:notice] = 'Registering works!'
-      redirect_to root_url
+      # flash[:notice] = 'Registering works!'
+      # redirect_to root_url
       # <<< end of testing code
     else
       render '/home/welcome'
