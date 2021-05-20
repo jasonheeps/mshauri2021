@@ -31,11 +31,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
+  # config for ActionMailer
+  # see https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-
   config.action_mailer.perform_caching = false
-
   config.action_mailer.default_url_options = {
     host: 'localhost:3000'
   }
