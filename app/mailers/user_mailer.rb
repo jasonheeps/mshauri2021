@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserMailer < ApplicationMailer
+  default from: 'pschaefer@posteo.net'
+
   def login
     @user = params[:user]
     mail(to: @user.email, subject: 'Rwanda Tech Guide Login')
