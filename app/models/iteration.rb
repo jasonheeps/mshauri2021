@@ -5,6 +5,7 @@ class Iteration < ApplicationRecord
   has_many :questions, through: :iteration_answers
   has_many :recommendations, through: :answers
 
+
   def answer_question(answer, value = nil)
     return false if iteration_answers.find_by(question: answer.question)
 

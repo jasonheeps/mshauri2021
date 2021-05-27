@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skipt pundit authorization for UsersController
+  # skip pundit authorization for UsersController
   skip_after_action :verify_authorized
 
   def create
