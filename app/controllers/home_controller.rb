@@ -13,5 +13,6 @@ class HomeController < ApplicationController
       user_slug: @user.slug,
       iteration_id: @user.iterations.last.id
     )
+    authorize @user = User.new
   end
 end
