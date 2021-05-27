@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   # page rendered as root - when no user slug is given
   def welcome
-<<<<<<< ours
     @user = User.new
 
     # skip pundit authorization for home#welcome
@@ -14,8 +13,6 @@ class HomeController < ApplicationController
       user_slug: @user.slug,
       iteration_id: @user.iterations.last.id
     )
-=======
     authorize @user = User.new
->>>>>>> theirs
   end
 end
