@@ -33,14 +33,8 @@ class UsersController < ApplicationController
       redirect_to iteration_question_url(
         user_slug: @user.slug,
         iteration_id: @user.iterations.last.id,
-        # TODO: implement 'starting_quesiton_id' in iterations_controller
         question_id: @user.iterations.last.starting_question_id
       )
-
-      # >>> code for testing until we have implemented iteration_question_url
-      # flash[:notice] = 'Registering works!'
-      # redirect_to root_url
-      # <<< end of testing code
     else
       render '/home/welcome'
     end
