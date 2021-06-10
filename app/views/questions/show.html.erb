@@ -1,8 +1,55 @@
+<div class="bg-grey-lighter min-h-screen">
+  <div class="w-80 md:w-100 sm:w-100 xs:w-100 mx-auto xl:py-4 lg:py-4">
 
-<div><%= @question.title %></div>
+    <div class="w-100 md:w-100 xs:w-100 sm:w-100 mx-auto py-3 my-3 xs:my-0 bg-white rounded-xl">
+      <div class="w-90 mx-auto">
 
- <% @question.answers.each do |answer| %>
- <p><%= answer.value %></p>
-  <% end %>
+        <div class="w-100 mt-4">
+          <div class="h-3 w100 bg-grey-lighter rounded-full">
+            <!-- <progress-bar :value="completionRate" /> -->
+            <!-- todo - make this a component -->
+          </div>
+        </div>
 
-  <%= link_to "Next", questions_path(params[:next_question_id]) %>
+        <div class="w-100 relative">
+          <div class="py-4 relative z-0">
+            <h4 class="my-1 font-medium xs:text-xl capitalize-first">
+              <%= @question.title %>
+            </h4>
+          </div>
+        </div>
+
+        <div class="w-100 border-0 border-b-1 border-solid">
+        <!-- todo - top border goes here -->
+          <div class="w-90 mx-auto relative">
+            <div class="w-100 py-4 relative z-0">
+              <div class="w-100 pt-3 pb-5">
+
+              <% @question.answers.each do |answer| %>
+              <p><%= answer.value %></p>
+              <% end %>
+
+              </div>
+
+              <!-- button from old app, not sure if all is needed -->
+              <div class="text-right xs:block  mt-2">
+                <button
+                  :disabled="!form.answers.length"
+                  class="btn btn-primary rounded py-2 text-xl xs:w-100 xs:text-2xl"
+                  @click="saveAnswer"
+                >
+                  Next
+                </button>
+              </div>
+              <!-- something like this instead? -->
+              <%#= link_to "Next", questions_path(params[:next_question_id]) %>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
