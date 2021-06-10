@@ -1,0 +1,18 @@
+<%= form_tag admin_board_path, method: :get do %>
+  <%= text_field_tag :email,
+    params[:email],
+    class: "form-control",
+    placeholder: "email address",
+    autofocus: true %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<div class="iterations-container">
+  <% if @iterations %>
+    <p><%= "found user #{params[:email]}, user_id: #{@iterations.first.user_id}" %></p>
+    <p>iterations:</p>
+    <% @iterations.each_with_index do |iteration, i| %>
+      <%= render 'shared/iteration-card', locals: { iteration: iteration, index: i } %>
+    <% end %>
+  <% end %>
+</div>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     #   get :all
     # end
   end
+  resources :iterations, only: [:show]
+
+  get '/admin_board', to: 'admin_board#home', as: :admin_board
 
   get '/:user_slug', to: 'home#index', as: :home
   get '/:user_slug/i/:iteration_id/questions/:question_id', to: 'questions#show', as: :iteration_question
