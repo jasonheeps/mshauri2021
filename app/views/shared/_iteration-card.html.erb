@@ -1,8 +1,8 @@
 <% iteration = locals[:iteration] %>
 <% i = locals[:index] %>
 
-<div class="iteration-card">
-  <a href=<%="iterations/#{iteration.id}"%>>
+<div class="iteration-card mr-3">
+  <a href=<%="iterations/#{iteration.id}"%> class="p-3">
     <h3><%= "Iteration #{i + 1}" %></h3>
     <p><%= "Created at: #{iteration.created_at}" %></p>
     <p><%= "Last update: #{iteration.updated_at}" %></p>
