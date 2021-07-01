@@ -11,6 +11,6 @@ class AdminBoardController < ApplicationController
   def fetch_iterations
     email = params[:email]
     user = User.find_by(email: email)
-    @iterations = user.iterations.sort_by(&:created_at)
+    @iterations = user.iterations.sort_by(&:created_at) if user
   end
 end

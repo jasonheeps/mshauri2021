@@ -1,1 +1,6 @@
-iteration show page
+<div class="box">
+  <% @recommendations.each do |r| %>
+    <h3><%= r.title %></h3>
+    <p><%= r.description %></p>
+  <% end %>
+</div>

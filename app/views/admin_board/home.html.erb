@@ -1,21 +1,31 @@
-<div class="w-90 my-3 mx-auto">
-  <%= form_tag admin_board_path, method: :get do %>
-    <%= text_field_tag :email,
-      params[:email],
-      class: "form-control",
-      placeholder: "email address",
-      autofocus: true %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
+<div>
+  <div class="box">
+    <%= form_tag admin_board_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :email,
+        params[:email],
+        class: "form-control mr-2",
+        placeholder: "email address",
+        autofocus: true %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
 
-  <% if @iterations %>
-    <p><%= "found user #{params[:email]}, user_id: #{@iterations.first.user_id}" %></p>
-    <p>iterations:</p>
-    <div class="iterations-container d-flex flex-wrap justify-content-left w-100">
-      <% @iterations.each_with_index do |iteration, i| %>
-        <%= render 'shared/iteration-card', locals: { iteration: iteration, index: i } %>
-      <% end %>
-    </div>
-  <% end %>
+    <% if params[:email].blank? %>
+      <h3>Please enter an email address</h3>
+  </div>
+    <% elsif @iterations %>
+      <h3>Iterations for <em><%= params[:email].to_s %></em></h3>
+  </div>
+
+      <div class="iterations-container box cluster">
+        <div> <!-- cluster wrapper -->
+          <% @iterations.each_with_index do |iteration, i| %>
+            <%= render 'shared/iteration-card', locals: { iteration: iteration, index: i } %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <h3>No iterations found for <em><%= params[:email].to_s %></em></h3>
+  </div>
+    <% end %>
 </div>
 

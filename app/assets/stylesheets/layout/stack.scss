@@ -1,0 +1,16 @@
+// Selects class values that begin with 'stack'
+[class^='stack'] > * {
+  // Resets existing margins
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// ************************
+// * Stack with Recursion *
+// ************************
+
+// Selects every child (also nested) with a predecessor
+.stack * + * {
+  --space: var(--s2);
+  margin-top: var(--space);
+}
