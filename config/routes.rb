@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     #   get :all
     # end
   end
-  resources :iterations, only: [:show]
 
   get '/admin_board', to: 'admin_board#home', as: :admin_board
 
