@@ -38,6 +38,5 @@ class IterationsController < ApplicationController
 
   def user_params
     params.permit(:email)
->>>>>>> master
   end
 end
