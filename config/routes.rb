@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
   resources :questions, only: %i[index show]
-  resources :iteration_answers, only: %i[index create]
+  resources :iterations, only: %i[index show create]
   resources :recommendations, only: %i[show] do
     # collection do
     #   get :all

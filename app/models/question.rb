@@ -6,7 +6,7 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: false
 
-  # def init
-  #   self.entry ||= false
-  # end
+  def init
+    self.entry ||= false
+  end
 end

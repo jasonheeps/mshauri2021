@@ -11,3 +11,4 @@ class RecommendationPolicy < ApplicationPolicy
     end
   end
 end
+
