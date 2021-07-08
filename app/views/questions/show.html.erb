@@ -25,10 +25,12 @@
             <div class="w-100 py-4 relative z-0">
               <div class="w-100 pt-3 pb-5">
 
-              <% @question.answers.each do |answer| %>
-              <p><%= answer.value %></p>
-              <% end %>
-
+                <form>
+                  <% @question.answers.each do |answer| %>
+                  <input type="radio" name="choice" value="<%= answer.value %>"> <%= answer.value %>
+                  <br>
+                  <% end %>
+                </form>
               </div>
 
               <!-- button from old app, not sure if all is needed -->
@@ -40,9 +42,27 @@
                 >
                   Next
                 </button>
+
               </div>
               <!-- something like this instead? -->
               <%#= link_to "Next", questions_path(params[:next_question_id]) %>
+
+              <script>
+                const btn = document.querySelector('.btn');
+                // handle click button
+                btn.onclick = function () {
+                    const rbs = document.querySelectorAll('input[name="choice"]');
+                    let selectedValue;
+                    for (const rb of rbs) {
+                        if (rb.checked) {
+                            selectedValue = rb.value;
+                            break;
+                        }
+                    }
+                    // pass to iteration answer instead
+                    alert(selectedValue);
+                };
+              </script>
 
             </div>
           </div>
