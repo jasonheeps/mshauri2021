@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     # end
   end
 
-  get '/admin_board/:user_slug', to: 'admin_board#home', as: :admin_board
+  get '/admin_board/:user_slug', to: 'admin#home', as: :admin_home
+  get '/admin_login/:user_slug/', to: 'admin#login', as: :admin_login
+  
 
   get '/:user_slug', to: 'home#index', as: :home
   get '/:user_slug/i/:iteration_id/questions/:question_id', to: 'questions#show', as: :iteration_question

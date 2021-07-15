@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   def login
     # user can only login if they entered an email
     # user can only login if they already have an "account"
+    @user = User.find_by(email: user_params[:email])
+    return false unless @user
 
     # if user entered an email for which an "account" already exists, then:
     # resend email with login info
@@ -24,17 +26,25 @@ class UsersController < ApplicationController
     # - display flash notice
     flash[:notice] = 'Welcome back. Please use the link in the email to access your recommendations'
     # - stay on home#welcome
-    redirect_to root_url
+    if @user.admin
+      redirect_to admin_login_path(@user.slug)
+    else
+      redirect_to root_url
+    end   
   end
 
   def register
     @user = User.new(user_params)
     if @user.save && @user.iterations.build.save # TODO: refactor iteration creation and redirect to iteration
-      redirect_to iteration_question_url(
-        user_slug: @user.slug,
-        iteration_id: @user.iterations.last.id,
-        question_id: @user.iterations.last.starting_question_id
-      )
+      if @user.admin
+        redirect_to admin_login_path(@user.slug)
+      else
+        redirect_to iteration_question_url(
+          user_slug: @user.slug,
+          iteration_id: @user.iterations.last.id,
+          question_id: @user.iterations.last.starting_question_id
+        )
+      end
     else
       render '/home/welcome'
     end
