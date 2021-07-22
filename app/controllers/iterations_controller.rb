@@ -1,5 +1,7 @@
 class IterationsController < ApplicationController
-  before_action :require_current_user
+  # before_action :require_current_user
+  # TODO: The 'except' is a workaround
+  before_action :require_current_user, except: %i[show]
   skip_after_action :verify_authorized, only: %i[notify_user]
 
   # get all current user's iterations

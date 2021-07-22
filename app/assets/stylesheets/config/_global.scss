@@ -1,0 +1,40 @@
+// *************
+// * VARIABLES *
+// *************
+
+:root {
+  // spacers
+  --s1: 1rem;
+  --s2: 1.5rem;
+  --s3: 2.25rem;
+}
+
+// * widths*
+$max-width: 50ch;
+
+// *********
+// * RULES *
+// *********
+
+* {
+  box-sizing: border-box;
+}
+
+// Exception-based approach for setting max-width:
+* {
+  max-width: $max-width;
+}
+
+html,
+body,
+div,
+header,
+nav,
+main,
+footer {
+  max-width: none;
+}
+
+// *******************
+// * UTILITY CLASSES *
+// *******************

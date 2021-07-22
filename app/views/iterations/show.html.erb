@@ -1,0 +1,6 @@
+<div class="box">
+  <% @iteration.recommendations.each do |r| %>
+    <h3><%= r.title %></h3>
+    <p><%= r.description %></p>
+  <% end %>
+</div>

@@ -1,0 +1,44 @@
+// The Cluster is responsible for positioning elements
+// (possibly of different lengths) next (and below) of each other
+// (wihout being restricted to a grid layout) by
+// placing margins on all sides of the elements.
+
+// The html structure is:
+// parent.cluster > wrapper > children
+
+.cluster {
+  --space: var(--s1);
+
+  /* ↓ Suppress horizontal scrolling caused by
+  the negative margin in some circumstances */
+  overflow: hidden;
+}
+
+// Selects the wrapper element
+.cluster > * {
+  display: flex;
+  flex-wrap: wrap;
+
+  // The negative margin makes contained elements stick
+  // to the borders of their parent
+  /* ↓ multiply by -1 to negate the halved value */
+  margin: calc(var(--space) / 2 * -1);
+
+  // Further options: justify-content, align-items
+}
+
+// Selects the elements that need to be clustered
+.cluster > * > * {
+  /* ↓ half the value, because of the 'doubling up' */
+  margin: calc(var(--space) / 2);
+}
+
+// Alternative with the 'gap' property
+// (browser support limited https://caniuse.com/?search=gap):
+
+/* ↓ No need for an additional, outer wrapping element */
+// .cluster {
+// display: flex;
+// flex-wrap: wrap;
+// gap: 1rem;
+// }

@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-center box cluster vh-100" >
+  <div> <!-- wrapper -->
+    <%= link_to iteration_question_url(
+        user_slug: @user.slug,
+        iteration_id: @user.iterations.last.id,
+        question_id: @user.iterations.last.starting_question_id
+      ),
+      class: 'btn text-white font-roboto rounded w-100 shadow-success bg-success relative px-4 text-left mt-2' do %>
+      Survey
+      <i class="fas fa-long-arrow-alt-right float-right mt-1"></i>
+    <% end %>
+
+    <%= link_to admin_home_path(@user.slug), class: 'btn text-white font-roboto rounded w-100 shadow-primary bg-primary relative px-4 text-left mt-2' do %>
+      Admin Board
+      <i class="fas fa-long-arrow-alt-right float-right mt-1"></i>
+    <% end %>
+  </div>
+</div>

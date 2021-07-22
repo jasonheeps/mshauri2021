@@ -1,0 +1,10 @@
+<% iteration = locals[:iteration] %>
+<% i = locals[:index] %>
+
+<div class="iteration-card mr-3">
+  <%= link_to iteration_path(iteration), class: 'box' do  %>
+    <h3><%= "Iteration #{i + 1}" %></h3>
+    <p><%= "Created at: #{iteration.created_at}" %></p>
+    <p><%= "Last update: #{iteration.updated_at}" %></p>
+  <% end %>
+</div>
