@@ -7,9 +7,7 @@ class IterationPolicy < ApplicationPolicy
 
   def show?
     # return false unless user
-
-    # user.admin? || user.id == record.user_id
-    true
+    user.admin? || user.id == record.user_id
   end
 
   class Scope < Scope
