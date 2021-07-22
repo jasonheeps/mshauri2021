@@ -1,9 +1,10 @@
 class AdminController < ApplicationController
   # TODO: create authorization check to verify admin user
-  skip_after_action :verify_authorized, only: %i[home, login]
+  skip_after_action :verify_authorized, only: %i[login]
 
   def home
     fetch_iterations if params[:email]
+    skip_authorization
   end
 
   def login
