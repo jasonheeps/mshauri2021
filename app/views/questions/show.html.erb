@@ -25,12 +25,28 @@
             <div class="w-100 py-4 relative z-0">
               <div class="w-100 pt-3 pb-5">
 
-                <form>
-                  <% @question.answers.each do |answer| %>
-                  <input type="radio" name="choice" value="<%= answer.value %>"> <%= answer.value %>
+<!--                 <form>
+                  <#% @question.answers.each do |answer| %>
+                  <input type="radio" name="choice" value="<#%= answer.value %>"> <#%= answer.value %>
                   <br>
-                  <% end %>
-                </form>
+                  <#% end %>
+                </form> -->
+
+<!-- this one sort of works -->
+                <%#= form_for(@iteration_answer) do |f| %>
+                  <%#= f.radio_button :answer_id, '1' %>
+                  <%#= f.label :answer_id, 'Email', :value => 'email' %>
+                  <%#= f.submit %>
+                <%# end %>
+
+                <%= form_for(@iteration_answer) do |f| %>
+                  <%= f.radio_button :answer_id, 1 %>
+                  <%= f.label :answer_id, 'Email' %>
+                  <%= f.submit %>
+                <% end %>
+
+
+
               </div>
 
               <!-- button from old app, not sure if all is needed -->

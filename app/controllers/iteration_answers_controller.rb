@@ -20,13 +20,19 @@ class IterationAnswersController < ApplicationController
   def build_iteration_answers
     iteration = Iteration.find(params[:iteration_id])
 
-    iteration_answer_params[:answers].map do |a|
+    # iteration_answer_params[:iteration_answer].map do |a|
+    #   answer = Answer.find(a[:answer_id])
+    #   IterationAnswer.new(iteration: iteration, answer: answer, question: answer.question, value: a[:value])
+    # end
+    iteration_answer = []
+    iteration_answer_params[:iteration_answer].each do |a|
       answer = Answer.find(a[:answer_id])
-      IterationAnswer.new(iteration: iteration, answer: answer, question: answer.question, value: a[:value])
+    iteration_answer << IterationAnswer.new(iteration: iteration, answer: answer, question: answer.question, value: a[:value])
     end
+    return iteration_answer
   end
 
   def iteration_answer_params
-    params.permit(answers: %i[answer_id value])
+    params.permit(iteration_answer: %i[answer_id value])
   end
 end
